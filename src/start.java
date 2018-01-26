@@ -4,10 +4,7 @@ import javax.swing.table.TableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
@@ -103,7 +100,7 @@ public class start {
                                 System.out.println(entry.getName());
                                 File temp = new File(unzipDir.getAbsoluteFile() + File.separator + entryName);
 
-                                if (entry.isDirectory()) {
+                                if (entry.isDirectory()||(!entryName.matches(".*\\.((jar)|(class))"))) {
 
 
                                 } else {
@@ -145,14 +142,14 @@ public class start {
 
                             String v = "UNKOWN";
                             if (ver == 45) {
-                                v = "JDK_1_1";
+                                v = "JDK_1.1";
                             } else if (ver == 46) {
-                                v = "JDK_1_2";
+                                v = "JDK_1.2";
                             } else if (ver == 47) {
-                                v = "JDK_1_3";
+                                v = "JDK_1.3";
 
                             } else if (ver == 48) {
-                                v = "JDK_1_4";
+                                v = "JDK_1.4";
 
                             } else if (ver == 49) {
                                 v = "JDK_5";
@@ -173,13 +170,14 @@ public class start {
 
                             textField1.paintImmediately(0, 0, textField1.getWidth(), textField1.getHeight());
                             t.setFileClass(v);
+                            t.setCode(ver);
                             filecheck.add(t);
 
                         }
 
 
                         Map<String, List<String>> textshow = new HashMap<String, List<String>>();
-
+                        Collections.sort(filecheck);
                         for (classCheck c : filecheck) {
 
                             List<String> tc = textshow.get(c.getFileClass());

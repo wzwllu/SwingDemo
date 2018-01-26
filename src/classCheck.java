@@ -1,4 +1,4 @@
-public class classCheck {
+public class classCheck implements Comparable<classCheck> {
 
     private String filename;
 
@@ -20,6 +20,23 @@ public class classCheck {
 
     private String fileClass;
 
+    private int code;
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
     public classCheck() {
+    }
+
+
+    public int compareTo(classCheck o) {
+
+        return this.code - o.code;
+
     }
 }
